@@ -1,0 +1,61 @@
+﻿<Window x:Class="ProyectoLibros1.Views.LibroView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProyectoLibros1.Views"  xmlns:ViewModels="clr-namespace:ProyectoLibros.ViewModels"
+        mc:Ignorable="d"
+        Title="LibrosView" Height="450" Width="800" MinHeight="550" MinWidth="960">
+    <Grid>
+        <DockPanel>
+            <DockPanel.DataContext>
+                <ViewModels:LibroViewModels></ViewModels:LibroViewModels>
+            </DockPanel.DataContext>
+            <DockPanel.Resources>
+               
+                <Style TargetType="ListBox">
+                    <Setter Property="Width" Value="160"></Setter>
+                    <Setter Property="Background" Value="Tan"></Setter>
+                    <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
+
+                </Style>
+            </DockPanel.Resources>
+            <DockPanel>
+               
+
+                <ListBox SelectedItem="{Binding Libro}" ItemsSource="{Binding libros}"
+                         DisplayMemberPath="TituloOriginal"></ListBox>
+            </DockPanel>
+
+            <ContentControl>
+                <ContentControl.Resources>
+                    <local:UAgregar x:Key="agregar"></local:UAgregar>
+                    <local:UEditar x:Key="editar"></local:UEditar>
+                    <local:UEliminar x:Key="eliminar"></local:UEliminar>
+                    <local:DatosLibros x:Key="ver" RenderTransformOrigin="0.506,0.551"></local:DatosLibros>
+
+                </ContentControl.Resources>
+                <ContentControl.Style>
+                    <Style TargetType="ContentControl">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Vista}" Value="ver">
+                                <Setter Property="Content" Value="{StaticResource ver}"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Vista}" Value="agregar">
+                                <Setter Property="Content" Value="{StaticResource agregar}"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Vista}" Value="editar">
+                                <Setter Property="Content" Value="{StaticResource editar}"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Vista}" Value="eliminar">
+                                <Setter Property="Content" Value="{StaticResource eliminar}"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ContentControl.Style>
+
+            </ContentControl>
+
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="ProyectoLibros1.Views.DatosLibros"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                 xmlns:local="clr-namespace:ProyectoLibros1.Views" xmlns:viewmodels="clr-namespace:ProyectoLibros.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LibroViewModels}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <StackPanel Margin="10" Background="BurlyWood">
+            <StackPanel.Resources>
+              
+
+              
+
+                <Style TargetType="Label">
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                    <Setter Property="FontSize" Value="19"></Setter>
+                    <Setter Property="Foreground" Value=" white"></Setter>
+                    <Setter Property="Margin" Value="50,10,540,0"></Setter>
+                    <Setter Property="FontFamily" Value="Tw Cen MT"></Setter>
+
+                </Style>
+                <Style TargetType="TextBlock" x:Key="espacio">
+                    <Setter Property="Background" Value="white"></Setter>
+                    <Setter Property="Margin" Value="50,0,100,10"></Setter>
+                    <Setter Property="FontSize" Value="14"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock TextAlignment="Center" Foreground="white" FontFamily="Tw Cen MT" FontSize="28">Datos del libro</TextBlock>
+            <Label>Titulo del libro:</Label>
+            <TextBlock Style="{StaticResource espacio}" Text="{Binding Libro.Titulo}"></TextBlock>
+            <Label>Reseña del libro:</Label>
+            <TextBlock Style="{StaticResource espacio}" Text="{Binding Libro.Reseña}"></TextBlock>
+            <Label>Genero del libro:</Label>
+            <TextBlock Style="{StaticResource espacio}" Text="{Binding Libro.Genero}"></TextBlock>
+            <Label>Autor del libro:</Label>
+            <TextBlock Style="{StaticResource espacio}" Text="{Binding Libro.Autor}"></TextBlock>
+            <WrapPanel Margin="40" HorizontalAlignment="Center">
+                <Button Margin="10" Height="60" Width="120" FontFamily="Tw Cen MT" FontSize="19" Foreground="white" Background="chocolate" Command="{Binding CambiarVistaCommand}" Content="Agregar"
+                        CommandParameter="agregar" DockPanel.Dock="Bottom"></Button>
+
+                <Button Margin="10" Height="60" Width="120" FontFamily="Tw Cen MT" FontSize="19" Foreground="white" Background="chocolate" Command="{Binding CambiarVistaCommand}" Content="Editar"
+                        CommandParameter="editar" DockPanel.Dock="Bottom"></Button>
+
+                <Button  Margin="10" Height="60" Width="120" FontFamily="Tw Cen MT" FontSize="19" Foreground="white" Background="chocolate" Command="{Binding CambiarVistaCommand}" Content="Eliminar" 
+                        CommandParameter="eliminar" DockPanel.Dock="Bottom"></Button>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
